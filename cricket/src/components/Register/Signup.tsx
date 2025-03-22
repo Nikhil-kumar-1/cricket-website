@@ -16,6 +16,7 @@ import {
   IonSelectOption,
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import { backend_url } from '../../config/config';
 
 
 const Signup: React.FC = () => {
@@ -37,7 +38,7 @@ const Signup: React.FC = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup', { email, name, mobile, password, role });
+      const response = await axios.post(`${backend_url}/api/auth/signup`, { email, name, mobile, password, role });
       console.log(response.data);
       setAlertMessage('Signup successful!');
       setShowAlert(true);

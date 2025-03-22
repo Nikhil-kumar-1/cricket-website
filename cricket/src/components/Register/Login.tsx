@@ -18,8 +18,10 @@ import {
   IonBackButton,
 } from '@ionic/react';
 import { useHistory } from 'react-router-dom';
+import { backend_url } from '../../config/config';
 
 const Login: React.FC = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'admin' | 'organizer' | 'participant'>('admin');
@@ -30,7 +32,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password, role });
+      const response = await axios.post(`${backend_url}/api/auth/login`, { email, password, role });
       const { token, role: userRole } = response.data;
 
       localStorage.setItem('token', token);
